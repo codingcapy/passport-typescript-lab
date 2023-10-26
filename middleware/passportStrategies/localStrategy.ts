@@ -21,14 +21,14 @@ const localStrategy = new LocalStrategy(
 /*
 FIX ME (types) 😭
 */
-passport.serializeUser(function (user: any, done: any) {
+passport.serializeUser(function (user: any, done: (err: any, id?: unknown) => void) {
   done(null, user.id);
 });
 
 /*
 FIX ME (types) 😭
 */
-passport.deserializeUser(function (id: any, done: any) {
+passport.deserializeUser(function (id: any, done: (err: any, id?: unknown) => void) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
