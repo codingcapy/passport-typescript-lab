@@ -1,4 +1,4 @@
-const database = [
+const database: Express.User[] = [
   {
     id: 1,
     name: "Jimmy Smith",

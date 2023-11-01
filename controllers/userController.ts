@@ -1,4 +1,4 @@
-import {userModel} from "../models/userModel";
+import { userModel } from "../models/userModel";
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
   let user = userModel.findOne(email);
@@ -9,7 +9,7 @@ const getUserByEmailIdAndPassword = (email: string, password: string) => {
   }
   return null;
 };
-const getUserById = (id:number) => {
+const getUserById = (id: number) => {
   let user = userModel.findById(id);
   if (user) {
     return user;
@@ -17,7 +17,7 @@ const getUserById = (id:number) => {
   return null;
 };
 
-function isUserValid(user: any, password: string) {
+function isUserValid(user: Express.User, password: string) {
   return user.password === password;
 }
 

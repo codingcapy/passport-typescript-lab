@@ -1,7 +1,8 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { getUserByEmailIdAndPassword, getUserById} from "../../controllers/userController";
+import { getUserByEmailIdAndPassword, getUserById } from "../../controllers/userController";
 import { PassportStrategy } from '../../interfaces/index';
+
 
 const localStrategy = new LocalStrategy(
   {
@@ -9,19 +10,24 @@ const localStrategy = new LocalStrategy(
     passwordField: "password",
   },
   (email, password, done) => {
-    const user = getUserByEmailIdAndPassword(email, password);
-    return user
-      ? done(null, user)
-      : done(null, false, {
+    try {
+      const user = getUserByEmailIdAndPassword(email, password);
+      return user
+        ? done(null, user)
+        : done(null, false, {
           message: "Your login details are not valid. Please try again",
         });
+    }
+    catch (error) {
+
+    }
   }
 );
 
 /*
 FIX ME (types) 😭
 */
-passport.serializeUser(function (user: Express.User, done: (err: any, id?: unknown) => void) {
+passport.serializeUser(function (user: Express.User, done: (err: any, id?: number) => void) {
   done(null, user.id);
 });
 
@@ -43,3 +49,5 @@ const passportLocalStrategy: PassportStrategy = {
 };
 
 export default passportLocalStrategy;
+
+
