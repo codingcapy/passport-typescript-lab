@@ -8,14 +8,14 @@ router.get("/login", forwardAuthenticated, (req, res) => {
   res.render("login", { messages: (req.session as any).messages });
 })
 
-router.get('/auth/github',
+router.get('/github',
   passport.authenticate('github', { scope: ['user:email'] }));
 
-router.get('/auth/github/callback',
+router.get('/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/dashboard');
   });
 
 router.post(
