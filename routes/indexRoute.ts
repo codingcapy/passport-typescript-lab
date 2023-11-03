@@ -11,6 +11,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
   res.render("dashboard", { user: req.user, sessions: sessions });
 });
 
+//testing sessions display
 router.get('/sessions', (req, res) => {
   const sessions = Object.keys((req as any).sessionStore.sessions).map((key) => JSON.parse((req as any).sessionStore.sessions[key]));
   res.send(sessions);

@@ -7,7 +7,7 @@
         <% sessions.forEach(session => { %>
             <li>
                 <%= JSON.stringify(session) %>
-                <a href="/killsession/<%= session.id %>" class="btn btn-danger">Kill Session</a>
+                <a href="/revokesession/<%= session.id %>" class="btn btn-danger">Kill Session</a>
             </li>
         <% }); %>
     </ul>
