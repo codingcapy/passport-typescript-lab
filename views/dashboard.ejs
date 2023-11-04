@@ -5,10 +5,10 @@
     <h2>Live Sessions</h2>
     <ul>
         <% sessions.forEach(session => { %>
-            <li>
+            <form action="/revokesession/<%= session %>" method="POST">
                 <%= JSON.stringify(session) %>
-                <a href="/revokesession/<%= session.id %>" class="btn btn-danger">Kill Session</a>
-            </li>
+                <button type="submit" class="btn btn-danger">Revoke Session</button>
+            </form>
         <% }); %>
     </ul>
 <% } %>
