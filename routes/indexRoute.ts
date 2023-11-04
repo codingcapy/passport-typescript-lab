@@ -28,15 +28,15 @@ router.post('/revokesession/:session', (req, res) => {
   const sessionId = req.params.session as string;
   const sessions = Object.keys((req as any).sessionStore.sessions)
   sessions.map((key) => {
-      if (key === sessionId) {
-          Object((req as any).sessionStore.sessions).container[key].destroy((err: any) => {
-              if (err) {
-                  res.send('Error revoking session.');
-              } else {
-                  res.redirect('/dashboard');
-              }
-          })
-      }
+    if (key === sessionId) {
+      Object((req as any).sessionStore.sessions).container[key].destroy((err: any) => {
+        if (err) {
+          res.send('Error revoking session.');
+        } else {
+          res.redirect('/dashboard');
+        }
+      })
+    }
   })
 });
 

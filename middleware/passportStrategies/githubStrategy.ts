@@ -19,9 +19,6 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
             const user = { id: profile.id, name: profile.username }
             database.push(user)
             return done(null, user)
-            // User.findOrCreate({ githubId: profile.id }, function (err: any, user: Express.User) {
-            //     return done(err, user);
-            // });
         }
     },
 );
