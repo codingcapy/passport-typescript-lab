@@ -1,8 +1,6 @@
 import express from "express";
 const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
-import { Request, Response } from "express";
-import { Session } from "express-session"
 
 router.get("/", (req, res) => {
   res.send("welcome");
@@ -25,13 +23,5 @@ router.get('/sessions', (req, res) => {
   const sessions3 = Object((req as any).sessionStore.sessions)
   res.send(sessions3);
 });
-
-interface CustomSessionData {
-  [key: string]: any; // Customize the value type if necessary
-}
-
-interface CustomRequest extends Request {
-  session: Session & Partial<CustomSessionData>; // Use the imported Session type
-}
 
 export default router;

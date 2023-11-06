@@ -4,10 +4,12 @@ import session from "express-session";
 import path from "path";
 import passportMiddleware from './middleware/passportMiddleware';
 import "./types/index"
-const port = process.env.port || 8000;
+import authRoute from "./routes/authRoute";
+import indexRoute from "./routes/indexRoute";
 
+const port = process.env.port || 8000;
 const app = express();
-const myStore = new session.MemoryStore()
+const memStore = new session.MemoryStore()
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,12 +23,9 @@ app.use(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
-    store: myStore
+    store: memStore
   })
 );
-
-import authRoute from "./routes/authRoute";
-import indexRoute from "./routes/indexRoute";
 
 // Middleware for express
 app.use(express.json());
@@ -53,7 +52,7 @@ app.post('/revokesession/:session', (req, res) => {
   const sesssions = Object.keys((req as any).sessionStore.sessions)
   sesssions.map((session) => {
     if (session === sessionId) {
-      myStore.destroy(req.params.session)
+      memStore.destroy(req.params.session)
     }
   })
   res.redirect('/dashboard');
