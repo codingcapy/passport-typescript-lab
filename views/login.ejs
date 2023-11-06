@@ -22,8 +22,9 @@
             <button type="submit" class="btn btn-primary btn-block">Login with Email</button>
           </form>
           <p>or</p>
-          <button onclick="window.open('/auth/github', 'Github Login', 'width=800,height=600')"
-            class="btn btn-primary btn-block">Login using Github</button>
+          <form action="/auth/github" method="GET">
+            <button type="submit" class="btn btn-primary btn-block">Login using Github</button>
+          </form>
           <p class="mt-4">New User? <a href="/auth/register">Register</a></p>
           <p>Forgot Password? <a href="/auth/forgot">Reset</a></p>
     </div>

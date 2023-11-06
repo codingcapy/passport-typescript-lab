@@ -7,6 +7,7 @@ import "./types/index"
 const port = process.env.port || 8000;
 
 const app = express();
+const myStore = new session.MemoryStore()
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -20,6 +21,7 @@ app.use(
       secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     },
+    store: myStore
   })
 );
 
@@ -43,6 +45,20 @@ app.use((req, res, next) => {
   console.log((req.session as any).passport);
   next();
 });
+
+app.get("/")
+
+app.post('/revokesession/:session', (req, res) => {
+  const sessionId = req.params.session;
+  const sesssions = Object.keys((req as any).sessionStore.sessions)
+  sesssions.map((session) => {
+    if (session === sessionId) {
+      myStore.destroy(req.params.session)
+    }
+  })
+  res.redirect('/dashboard');
+});
+
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);

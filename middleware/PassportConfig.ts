@@ -14,7 +14,7 @@ export default class PassportConfig {
      private from the outside world. This way, we can GUARANTEE that our
      passport strategies are added when this class is created. ⭐️
     */
-    constructor(strategies: PassportStrategy[]){
+    constructor(strategies: PassportStrategy[]) {
         addStrategies(strategies)
     }
 }
