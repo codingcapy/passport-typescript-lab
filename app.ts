@@ -45,8 +45,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/")
-
 app.post('/revokesession/:session', (req, res) => {
   const sessionId = req.params.session;
   const sesssions = Object.keys((req as any).sessionStore.sessions)
