@@ -23,7 +23,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
-    failureMessage: "Invalid login info"
+    failureMessage: true
     /* FIX ME: 😭 failureMsg needed when login fails */
   })
 );

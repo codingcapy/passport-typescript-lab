@@ -14,11 +14,13 @@ const localStrategy = new LocalStrategy(
       return user
         ? done(null, user)
         : done(null, false, {
-          message: "Your login details are not valid. Please try again",
+          message: "Your password is incorrect",
         });
     }
     catch (error) {
-
+      done(null, false, {
+        message: "Your username is incorrect"
+      })
     }
   }
 );
